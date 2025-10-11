@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Bus Ticket Booking System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            padding: 80px 0;
+        }
+
+        .about-section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .story-content {
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .story-content h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .story-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .team-section {
+            background: #f8fafc;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .team-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .team-avatar i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .team-card h4 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .team-card .role {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .team-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .value-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .value-item h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .value-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .story-content {
+                padding: 40px 30px;
+            }
+
+            .stats-section {
+                padding: 60px 0;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-bus"></i>
+                <span>BusBooking</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-user-shield"></i> Admin
+                </a>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About BusBooking</h1>
+            <p>Revolutionizing bus travel across Srilanka with comfort, safety, and convenience at the forefront of everything we do.</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <!-- Our Story Section -->
+            <div class="about-section">
+                <div class="section-header">
+                    <h2>Our Story</h2>
+                    <p>From humble beginnings to becoming Srilanka's trusted bus booking platform</p>
+                </div>
+                <div class="story-content">
+                    <h3>Connecting Srilanka, One Journey at a Time</h3>
+                    <p>Founded in 2020, BusBooking was born from a simple vision: to make bus travel across Srilanka more accessible, comfortable, and reliable. We recognized the challenges faced by millions of travelers who depend on bus transportation for their daily commutes and long-distance journeys.</p>
+                    <p>Our platform bridges the gap between passengers and bus operators, providing a seamless booking experience while ensuring transparency, safety, and convenience. Today, we proudly serve thousands of customers across multiple cities, connecting communities and making travel dreams a reality.</p>
+                    <p>We believe that every journey should be memorable for the right reasons – comfort, punctuality, and peace of mind. That's why we've partnered with the best bus operators in the country to bring you premium services at affordable prices.</p>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="about-section">
+                <div class="section-header">
+                    <h2>Why Choose Us</h2>
+                    <p>Discover what makes BusBooking the preferred choice for millions of travelers</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Safe & Secure</h3>
+                        <p>Your safety is our priority. All our partner buses undergo regular safety checks and our drivers are thoroughly verified and trained.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Our customer support team is available round the clock to assist you with bookings, cancellations, and any travel-related queries.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Easy Booking</h3>
+                        <p>Book your tickets in just a few clicks with our user-friendly platform. Choose your seats, make payments, and get instant confirmation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <h3>Wide Network</h3>
+                        <p>Travel to over 50+ destinations across Srilanka with our extensive network of trusted bus operators and routes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3>Best Prices</h3>
+                        <p>Get the best deals and competitive prices on bus tickets. We regularly offer discounts and special promotions for our customers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Quality Service</h3>
+                        <p>Experience premium amenities including comfortable seating, air conditioning, entertainment systems, and complimentary refreshments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Our Impact in Numbers</h2>
+                <p style="color: rgba(255,255,255,0.9);">These numbers reflect our commitment to excellence and customer satisfaction</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">50,000+</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Cities Connected</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Daily Routes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.5%</span>
+                    <span class="stat-label">On-Time Performance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-section">
+                <div class="section-header">
+                    <h2>Our Values</h2>
+                    <p>The principles that guide us in everything we do</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <h4>Customer First</h4>
+                        <p>Every decision we make is centered around providing the best possible experience for our customers.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Safety</h4>
+                        <p>We never compromise on safety standards and continuously work to ensure secure travel for all passengers.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Innovation</h4>
+                        <p>We embrace technology and innovation to continuously improve our services and user experience.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Reliability</h4>
+                        <p>Our customers trust us to get them to their destination safely and on time, every time.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Transparency</h4>
+                        <p>We believe in honest communication and transparent pricing with no hidden fees or surprises.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Sustainability</h4>
+                        <p>We're committed to promoting eco-friendly travel options and reducing our environmental impact.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="about-section team-section">
+                <div class="section-header">
+                    <h2>Meet Our Team</h2>
+                    <p>The passionate individuals working to make your travel experience exceptional</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Mohammed Ajamal</h4>
+                        <div class="role">CEO & Founder</div>
+                        <p>Visionary leader with 10+ years in transportation industry, dedicated to revolutionizing bus travel in Srilanka.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4>Mohammed Shakeef</h4>
+                        <div class="role">CTO</div>
+                        <p>Technology expert focused on building scalable platforms and enhancing user experience through innovation.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>Mohammed Amin</h4>
+                        <div class="role">Head of Customer Support</div>
+                        <p>Customer service champion ensuring 24/7 support and maintaining our high satisfaction standards.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Azam sarafy</h4>
+                        <div class="role">Operations Manager</div>
+                        <p>Operations expert managing our extensive network of partners and ensuring smooth daily operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BusBooking</h3>
+                    <p>Your trusted partner for comfortable and safe bus travel across Srilanka.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin.html">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+                    <p><i class="fas fa-envelope"></i> info@busbooking.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BusBooking. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/about.js"></script>
+</body>
+</html>

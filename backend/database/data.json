@@ -1,0 +1,43 @@
+{
+  "buses": [
+    {
+      "_id": "bus1",
+      "busNumber": "MH12AB1234",
+      "busName": "Scania Luxury",
+      "from": "Mumbai",
+      "to": "Pune",
+      "departureTime": "06:00",
+      "arrivalTime": "09:30",
+      "fare": 450,
+      "totalSeats": 40,
+      "busType": "AC Sleeper",
+      "amenities": [
+        "AC",
+        "WiFi",
+        "Charging Point",
+        "Entertainment"
+      ]
+    },
+    {
+      "_id": "bus2",
+      "busNumber": "KA05CD5678",
+      "busName": "Volvo Express",
+      "from": "Bangalore",
+      "to": "Chennai",
+      "departureTime": "22:00",
+      "arrivalTime": "06:00",
+      "fare": 650,
+      "totalSeats": 35,
+      "busType": "AC Sleeper",
+      "amenities": [
+        "AC",
+        "WiFi",
+        "Blanket",
+        "Pillow"
+      ]
+    }
+  ],
+  "bookings": [],
+  "users": [],
+  "payments": []
+}

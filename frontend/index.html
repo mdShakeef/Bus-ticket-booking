@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking System</title>
+    <link rel="icon" type="image/png" href="images/bus-school.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-bus"></i>
+                <span>BusBooking</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-user-shield"></i> Admin
+                </a>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Book Your Bus Journey</h1>
+                <p class="hero-subtitle">Travel comfortably with our premium bus services across India</p>
+                
+                <!-- Search Form -->
+                <div class="search-container">
+                    <form id="search-form" class="search-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="from">From</label>
+                                <select id="from" name="from" required>
+                                    <option value="">Select District</option>
+                                    <option value="Colombo">Colombo</option>
+                                    <option value="Polonnaruwa">Polonnaruwa</option>
+                                    <option value="Kalmunai">Kalmunai</option>
+                                    <option value="Galle">Galle</option>
+                                    <option value="Jafna">Jafna</option>
+                                    <option value="Nuwereliya">Nuwereliya</option>
+                                    <option value="Badulla">Badulla</option>
+                                    <option value="Kurnagal">Kurnagal</option>
+                                    <option value="Trinkomale">Trinkomale</option>
+                                    <option value="Batticaloa">Batticaloa</option>
+                                    <option value="Mannar">Mannar</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="to">To</label>
+                                <select id="to" name="to" required>
+                                    <option value="">Select District</option>
+                                    <option value="Colombo">Colombo</option>
+                                    <option value="Polonnaruwa">Polonnaruwa</option>
+                                    <option value="Kalmunai">Kalmunai</option>
+                                    <option value="Galle">Galle</option>
+                                    <option value="Jafna">Jafna</option>
+                                    <option value="Nuwereliya">Nuwereliya</option>
+                                    <option value="Badulla">Badulla</option>
+                                    <option value="Kurnagal">Kurnagal</option>
+                                    <option value="Trinkomale">Trinkomale</option>
+                                    <option value="Batticaloa">Batticaloa</option>
+                                    <option value="Mannar">Mannar</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Travel Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="search-btn">
+                                    <i class="fas fa-search"></i>
+                                    Search Buses
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bus Results Section -->
+        <section id="bus-results" class="bus-results hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Available Buses</h2>
+                    <div class="results-info">
+                        <span id="results-count">0 buses found</span>
+                        <span id="route-info"></span>
+                    </div>
+                </div>
+                <div id="buses-container" class="buses-container">
+                    <!-- Bus cards will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seat Selection Modal -->
+        <div id="seat-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Select Seats</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="bus-info">
+                        <h4 id="modal-bus-name"></h4>
+                        <p id="modal-route"></p>
+                        <p id="modal-time"></p>
+                    </div>
+                    <div class="seat-legend">
+                        <div class="legend-item">
+                            <div class="seat available"></div>
+                            <span>Available</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="seat selected"></div>
+                            <span>Selected</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="seat booked"></div>
+                            <span>Booked</span>
+                        </div>
+                    </div>
+                    <div id="seat-map" class="seat-map">
+                        <!-- Seat layout will be generated here -->
+                    </div>
+                    <div class="booking-summary">
+                        <div class="summary-item">
+                            <span>Selected Seats:</span>
+                            <span id="selected-seats">None</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total Fare:</span>
+                            <span id="total-fare"> LKR 0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="proceed-booking" class="btn btn-primary" disabled>
+                        Proceed to Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form Modal -->
+        <div id="booking-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Passenger Details</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="booking-form">
+                        <div class="form-group">
+                            <label for="passenger-name">Full Name *</label>
+                            <input type="text" id="passenger-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passenger-email">Email *</label>
+                            <input type="email" id="passenger-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passenger-phone">Phone Number *</label>
+                            <input type="tel" id="passenger-phone" name="phone" placeholder="e.g., +94771234567 or 0771234567" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-method">Payment Method *</label>
+                            <select id="payment-method" name="paymentMethod" required>
+                                <option value="">Select payment method</option>
+                                <option value="cash" selected>Cash Payment (Pay at Counter)</option>
+                                <option value="online">Online Payment (PayHere)</option>
+                            </select>
+                            <small style="color: #666; font-size: 0.9rem; margin-top: 5px; display: block;">
+                                💡 Pay at the bus counter or use online payment for immediate confirmation.
+                            </small>
+                        </div>
+                        <div class="booking-summary">
+                            <h4>Booking Summary</h4>
+                            <div class="summary-item">
+                                <span>Bus:</span>
+                                <span id="summary-bus"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Route:</span>
+                                <span id="summary-route"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Date:</span>
+                                <span id="summary-date"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Seats:</span>
+                                <span id="summary-seats"></span>
+                            </div>
+                            <div class="summary-item total">
+                                <span>Total Amount:</span>
+                                <span id="summary-total"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="booking-form" class="btn btn-primary">
+                        <i class="fas fa-credit-card"></i>
+                        Confirm Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket Modal -->
+        <div id="ticket-modal" class="modal hidden">
+            <div class="modal-content ticket-content">
+                <div class="modal-header">
+                    <h3>Booking Confirmation</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="ticket" id="ticket">
+                        <div class="ticket-header">
+                            <h2>Bus Ticket</h2>
+                            <div class="ticket-number">
+                                <span>Ticket #</span>
+                                <span id="ticket-number"></span>
+                            </div>
+                        </div>
+                        <div class="ticket-body">
+                            <div class="ticket-row">
+                                <div class="ticket-item">
+                                    <label>Passenger Name</label>
+                                    <span id="ticket-passenger"></span>
+                                </div>
+                                <div class="ticket-item">
+                                    <label>Phone</label>
+                                    <span id="ticket-phone"></span>
+                                </div>
+                            </div>
+                            <div class="ticket-row">
+                                <div class="ticket-item">
+                                    <label>Bus</label>
+                                    <span id="ticket-bus"></span>
+                                </div>
+                                <div class="ticket-item">
+                                    <label>Seat(s)</label>
+                                    <span id="ticket-seats"></span>
+                                </div>
+                            </div>
+                            <div class="ticket-row">
+                                <div class="ticket-item">
+                                    <label>From</label>
+                                    <span id="ticket-from"></span>
+                                </div>
+                                <div class="ticket-item">
+                                    <label>To</label>
+                                    <span id="ticket-to"></span>
+                                </div>
+                            </div>
+                            <div class="ticket-row">
+                                <div class="ticket-item">
+                                    <label>Date</label>
+                                    <span id="ticket-date"></span>
+                                </div>
+                                <div class="ticket-item">
+                                    <label>Time</label>
+                                    <span id="ticket-time"></span>
+                                </div>
+                            </div>
+                            <div class="ticket-row">
+                                <div class="ticket-item">
+                                    <label>Payment Status</label>
+                                    <span id="ticket-payment-status"></span>
+                                </div>
+                                <div class="ticket-item total">
+                                    <label>Total Fare</label>
+                                    <span id="ticket-total"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="download-ticket" class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Download Ticket
+                    </button>
+                    <button id="new-booking" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        New Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BusBooking</h3>
+                    <p>Your trusted partner for comfortable and safe bus travel across Sri Lanka.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin.html">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+                    <p><i class="fas fa-envelope"></i> info@busbooking.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BusBooking. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

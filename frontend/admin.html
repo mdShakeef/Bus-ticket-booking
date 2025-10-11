@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Bus Booking System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <i class="fas fa-user-shield"></i>
+                <h2>Admin Login</h2>
+                <p>Access the admin dashboard</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="admin@busticket.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn btn-primary login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+            </form>
+            <div class="login-footer">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-dashboard hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-bus"></i>
+                    <span>BusBooking Admin</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#buses" class="nav-item" data-section="buses">
+                            <i class="fas fa-bus"></i>
+                            <span>Manage Buses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#bookings" class="nav-item" data-section="bookings">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Bookings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#routes" class="nav-item" data-section="routes">
+                            <i class="fas fa-route"></i>
+                            <span>Routes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#reports" class="nav-item" data-section="reports">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="page-title">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="admin-profile">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="admin-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-buses">0</h3>
+                            <p>Total Buses</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-bookings">0</h3>
+                            <p>Total Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-revenue">LKR0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="today-bookings">0</h3>
+                            <p>Today's Bookings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Recent Bookings</h3>
+                            <a href="#bookings" class="view-all">View All</a>
+                        </div>
+                        <div class="card-content">
+                            <div id="recent-bookings" class="recent-bookings">
+                                <!-- Recent bookings will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Popular Routes</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="popular-routes" class="popular-routes">
+                                <!-- Popular routes will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Buses Section -->
+            <section id="buses-section" class="content-section">
+                <div class="section-header">
+                    <h2>Manage Buses</h2>
+                    <button id="add-bus-btn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add New Bus
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table id="buses-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Bus Number</th>
+                                <th>Bus Name</th>
+                                <th>Type</th>
+                                <th>Route</th>
+                                <th>Seats</th>
+                                <th>Fare</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Bus data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Bookings Section -->
+            <section id="bookings-section" class="content-section">
+                <div class="section-header">
+                    <h2>Bookings Management</h2>
+                    <div class="filters">
+                        <select id="booking-status-filter">
+                            <option value="">All Status</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                        <select id="payment-status-filter">
+                            <option value="">All Payments</option>
+                            <option value="completed">Paid</option>
+                            <option value="pending">Pending</option>
+                            <option value="failed">Failed</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table id="bookings-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Ticket #</th>
+                                <th>Passenger</th>
+                                <th>Bus</th>
+                                <th>Route</th>
+                                <th>Date</th>
+                                <th>Seats</th>
+                                <th>Amount</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Booking data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Routes Section -->
+            <section id="routes-section" class="content-section">
+                <div class="section-header">
+                    <h2>Route Management</h2>
+                </div>
+                
+                <div class="routes-grid">
+                    <div id="routes-list" class="routes-list">
+                        <!-- Routes will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports-section" class="content-section">
+                <div class="section-header">
+                    <h2>Reports & Analytics</h2>
+                </div>
+                
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Revenue Report</h3>
+                        <div class="report-content">
+                            <div class="report-stat">
+                                <span class="label">This Month:</span>
+                                <span class="value" id="month-revenue">LKR0</span>
+                            </div>
+                            <div class="report-stat">
+                                <span class="label">Last Month:</span>
+                                <span class="value" id="last-month-revenue">LKR0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="report-card">
+                        <h3>Booking Trends</h3>
+                        <div class="report-content">
+                            <div class="report-stat">
+                                <span class="label">This Week:</span>
+                                <span class="value" id="week-bookings">0</span>
+                            </div>
+                            <div class="report-stat">
+                                <span class="label">Last Week:</span>
+                                <span class="value" id="last-week-bookings">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Bus Form Modal -->
+    <div id="bus-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="bus-modal-title">Add New Bus</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="bus-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bus-number">Bus Number *</label>
+                            <input type="text" id="bus-number" name="busNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bus-name">Bus Name *</label>
+                            <input type="text" id="bus-name" name="busName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bus-type">Bus Type *</label>
+                            <select id="bus-type" name="busType" required>
+                                <option value="">Select type</option>
+                                <option value="AC">AC</option>
+                                <option value="Non-AC">Non-AC</option>
+                                <option value="Sleeper">Sleeper</option>
+                                <option value="Semi-Sleeper">Semi-Sleeper</option>
+                                <option value="Luxury">Luxury</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="total-seats">Total Seats *</label>
+                            <input type="number" id="total-seats" name="totalSeats" min="1" max="60" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="from-city">From *</label>
+                            <input type="text" id="from-city" name="from" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="to-city">To *</label>
+                            <input type="text" id="to-city" name="to" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departure-time">Departure Time *</label>
+                            <input type="time" id="departure-time" name="departureTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="arrival-time">Arrival Time *</label>
+                            <input type="time" id="arrival-time" name="arrivalTime" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="duration">Duration *</label>
+                            <input type="text" id="duration" name="duration" placeholder="e.g., 5h 30m" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fare">Fare (LKR) *</label>
+                            <input type="number" id="fare" name="fare" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="seat-rows">Seat Rows *</label>
+                            <input type="number" id="seat-rows" name="seatRows" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="seats-per-row">Seats Per Row *</label>
+                            <input type="number" id="seats-per-row" name="seatsPerRow" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amenities">Amenities (comma-separated)</label>
+                        <input type="text" id="amenities" name="amenities" placeholder="AC, WiFi, Charging Point">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeBusModal()">Cancel</button>
+                <button type="submit" form="bus-form" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Save Bus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/admin.js"></script>
+</body>
+</html>
