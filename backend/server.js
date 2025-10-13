@@ -3,7 +3,9 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
+
 // Import database connection
+
 const connectDB = require('./config/database');
 
 // Import middleware
